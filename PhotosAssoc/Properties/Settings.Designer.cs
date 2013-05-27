@@ -46,5 +46,17 @@ namespace PhotosAssoc.Properties {
                 this["xmlpath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string outputpath {
+            get {
+                return ((string)(this["outputpath"]));
+            }
+            set {
+                this["outputpath"] = value;
+            }
+        }
     }
 }

@@ -128,12 +128,14 @@ namespace PhotosAssoc
         {
             txtPhotosPath.Text = Properties.Settings.Default.photospath;
             txtXmlPath.Text = Properties.Settings.Default.xmlpath;
+            txtOutputPhotosDir.Text = Properties.Settings.Default.outputpath;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.photospath = txtPhotosPath.Text;
             Properties.Settings.Default.xmlpath = txtXmlPath.Text;
+            Properties.Settings.Default.outputpath = txtOutputPhotosDir.Text;
             Properties.Settings.Default.Save();
         }
 
