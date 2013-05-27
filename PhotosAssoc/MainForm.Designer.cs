@@ -29,7 +29,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtArciveName = new System.Windows.Forms.TextBox();
+            this.txtOutputPhotosDir = new System.Windows.Forms.TextBox();
             this.cmdPhotosPathBrowse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPhotosPath = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtArciveName);
+            this.groupBox1.Controls.Add(this.txtOutputPhotosDir);
             this.groupBox1.Controls.Add(this.cmdPhotosPathBrowse);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPhotosPath);
@@ -65,17 +65,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Имя архива:";
+            this.label2.Text = "Сложить в папку:";
             // 
-            // txtArciveName
+            // txtOutputPhotosDir
             // 
-            this.txtArciveName.Location = new System.Drawing.Point(129, 43);
-            this.txtArciveName.Name = "txtArciveName";
-            this.txtArciveName.Size = new System.Drawing.Size(375, 20);
-            this.txtArciveName.TabIndex = 4;
-            this.txtArciveName.Text = "photos.zip";
+            this.txtOutputPhotosDir.Location = new System.Drawing.Point(129, 43);
+            this.txtOutputPhotosDir.Name = "txtOutputPhotosDir";
+            this.txtOutputPhotosDir.Size = new System.Drawing.Size(375, 20);
+            this.txtOutputPhotosDir.TabIndex = 4;
             // 
             // cmdPhotosPathBrowse
             // 
@@ -109,7 +108,7 @@
             this.cmdMakeArchive.Name = "cmdMakeArchive";
             this.cmdMakeArchive.Size = new System.Drawing.Size(75, 23);
             this.cmdMakeArchive.TabIndex = 0;
-            this.cmdMakeArchive.Text = "Создать";
+            this.cmdMakeArchive.Text = "Обработать";
             this.cmdMakeArchive.UseVisualStyleBackColor = true;
             this.cmdMakeArchive.Click += new System.EventHandler(this.cmdMakeArchive_Click);
             // 
@@ -186,7 +185,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtArciveName;
+        private System.Windows.Forms.TextBox txtOutputPhotosDir;
         private System.Windows.Forms.Button cmdPhotosPathBrowse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPhotosPath;

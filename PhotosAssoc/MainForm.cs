@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -27,8 +22,8 @@ namespace PhotosAssoc
 
         private void cmdMakeArchive_Click(object sender, EventArgs e)
         {
-            string tmpDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            Directory.CreateDirectory(tmpDir);
+            string outputDir = txtOutputPhotosDir.Text;
+            Directory.CreateDirectory(outputDir);
 
             var dirs = Directory.EnumerateDirectories(txtPhotosPath.Text);
 
@@ -42,27 +37,11 @@ namespace PhotosAssoc
                     foreach (var file in files) {
                         if(jpegFileExtensionPattern.IsMatch(Path.GetFileName(file)))
                         {
-                            File.Copy(file, Path.Combine(tmpDir, string.Format("{0}_{1}.jpg", id, ++i)));
+                            File.Copy(file, Path.Combine(outputDir, string.Format("{0}_{1}.jpg", id, ++i)));
                         }
                     }
                 }
             }
-
-            File.Delete(Path.Combine(txtPhotosPath.Text, txtArciveName.Text));
-
-
-            try {
-                Process zipProcess = new Process();
-                zipProcess.StartInfo.FileName = "7za.exe";
-                zipProcess.StartInfo.Arguments = string.Format(@"a -tzip ""{0}"" ""{1}\*""", Path.Combine(txtPhotosPath.Text, txtArciveName.Text), tmpDir);
-                zipProcess.StartInfo.CreateNoWindow = true;
-                zipProcess.Start();
-                zipProcess.WaitForExit();
-            } catch(Exception ex) {
-                MessageBox.Show("7za archivator not found.");
-            }            
-
-            Directory.Delete(tmpDir, true);
         }
 
         private void cmdPhotosPathBrowse_Click(object sender, EventArgs e)
@@ -79,36 +58,14 @@ namespace PhotosAssoc
 
         private void cmdUpdateXML_Click(object sender, EventArgs e)
         {
-            string report = "";
-            try {
-                Process zipProcess = new Process();
-                zipProcess.StartInfo.FileName = "7za.exe";
-                zipProcess.StartInfo.Arguments = string.Format(@"l ""{0}""", Path.Combine(txtPhotosPath.Text, txtArciveName.Text));
-                zipProcess.StartInfo.CreateNoWindow = true;
-                zipProcess.StartInfo.RedirectStandardOutput = true;
-                zipProcess.StartInfo.UseShellExecute = false;
-                
-                zipProcess.Start();
-
-                report = zipProcess.StandardOutput.ReadToEnd();
-
-                zipProcess.WaitForExit();
-            } catch (Exception ex) {
-                MessageBox.Show("7za archivator not found.");
-                return;
-            }
-
-            var reportLines = report.Split('\n');
-
-            //List<string> photos = new List<string>();
-
             Dictionary<int, List<string>> assocPhotos = new Dictionary<int, List<string>>();
 
-            for (int i = 12; i < reportLines.Count() - 3; ++i) {
-                string line = reportLines[i].Trim();
-                var match = photoNamePattern.Match(line);
-                if (match.Groups.Count == 2) {
+            var files = Directory.EnumerateFiles(txtOutputPhotosDir.Text);
+            foreach(var fullFileName in files) {
+                string file = Path.GetFileName(fullFileName);
 
+                var match = photoNamePattern.Match(file);
+                if (match.Groups.Count == 2) {
                     string fileName = match.Groups[1].Value.Trim();
 
                     int id = int.Parse(fileName.Split('_')[0]);
@@ -155,7 +112,7 @@ namespace PhotosAssoc
                             attr.Value = "";
 
                             if (assocPhotos.ContainsKey(iid)) {
-                                assocPhotos[iid].ForEach(str => attr.Value += str + ";");
+                                assocPhotos[iid].ForEach(str => attr.Value += string.Format(@"http://agency40.ru/files/xml/photos/{0}.jpg;", str));
                             }
 
                             line.Attributes.Append(attr);
