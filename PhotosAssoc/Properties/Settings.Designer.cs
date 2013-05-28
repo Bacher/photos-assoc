@@ -58,5 +58,29 @@ namespace PhotosAssoc.Properties {
                 this["outputpath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string name {
+            get {
+                return ((string)(this["name"]));
+            }
+            set {
+                this["name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string contacts {
+            get {
+                return ((string)(this["contacts"]));
+            }
+            set {
+                this["contacts"] = value;
+            }
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace PhotosAssoc
                     foreach (var file in files) {
                         if(jpegFileExtensionPattern.IsMatch(Path.GetFileName(file)))
                         {
-                            File.Copy(file, Path.Combine(outputDir, string.Format("{0}_{1}.jpg", id, ++i)));
+                            File.Copy(file, Path.Combine(outputDir, string.Format("{0}_{1:000}.jpg", id, ++i)));
                         }
                     }
                 }
@@ -87,6 +87,9 @@ namespace PhotosAssoc
             string outPath = Path.Combine(txtXmlPath.Text, "WithPhotos\\");
             Directory.CreateDirectory(outPath);
 
+            string name = txtName.Text;
+            string contacts = txtContacts.Text;
+
             foreach (var file in files) {
                 if (file.ToLower().EndsWith(".xml")) {
                     var doc = new XmlDocument();
@@ -116,6 +119,9 @@ namespace PhotosAssoc
                             }
 
                             line.Attributes.Append(attr);
+
+                            line.Attributes["RLT_MAIN_OWNERFIO"].Value = name;
+                            line.Attributes["RLT_MAIN_OWNERTELEPHONE"].Value = contacts;
                         }
                     }
 
@@ -129,6 +135,8 @@ namespace PhotosAssoc
             txtPhotosPath.Text = Properties.Settings.Default.photospath;
             txtXmlPath.Text = Properties.Settings.Default.xmlpath;
             txtOutputPhotosDir.Text = Properties.Settings.Default.outputpath;
+            txtName.Text = Properties.Settings.Default.name;
+            txtContacts.Text = Properties.Settings.Default.contacts;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -136,6 +144,8 @@ namespace PhotosAssoc
             Properties.Settings.Default.photospath = txtPhotosPath.Text;
             Properties.Settings.Default.xmlpath = txtXmlPath.Text;
             Properties.Settings.Default.outputpath = txtOutputPhotosDir.Text;
+            Properties.Settings.Default.name = txtName.Text;
+            Properties.Settings.Default.contacts = txtContacts.Text;
             Properties.Settings.Default.Save();
         }
 
@@ -147,6 +157,12 @@ namespace PhotosAssoc
         private void txtXmlPath_TextChanged(object sender, EventArgs e)
         {
             xmlDialog.SelectedPath = this.Text;
+        }
+
+        private void cmdOutBrowse_Click(object sender, EventArgs e)
+        {
+            if (outDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                txtOutputPhotosDir.Text = outDialog.SelectedPath;
         }
     }
 }

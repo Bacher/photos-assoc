@@ -41,12 +41,19 @@
             this.txtXmlPath = new System.Windows.Forms.TextBox();
             this.photosDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.xmlDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtContacts = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmdOutBrowse = new System.Windows.Forms.Button();
+            this.outDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmdOutBrowse);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtOutputPhotosDir);
             this.groupBox1.Controls.Add(this.cmdPhotosPathBrowse);
@@ -55,7 +62,7 @@
             this.groupBox1.Controls.Add(this.cmdMakeArchive);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(597, 77);
+            this.groupBox1.Size = new System.Drawing.Size(597, 105);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Архивация фотографий";
@@ -71,9 +78,9 @@
             // 
             // txtOutputPhotosDir
             // 
-            this.txtOutputPhotosDir.Location = new System.Drawing.Point(129, 43);
+            this.txtOutputPhotosDir.Location = new System.Drawing.Point(141, 43);
             this.txtOutputPhotosDir.Name = "txtOutputPhotosDir";
-            this.txtOutputPhotosDir.Size = new System.Drawing.Size(375, 20);
+            this.txtOutputPhotosDir.Size = new System.Drawing.Size(363, 20);
             this.txtOutputPhotosDir.TabIndex = 4;
             // 
             // cmdPhotosPathBrowse
@@ -97,14 +104,14 @@
             // 
             // txtPhotosPath
             // 
-            this.txtPhotosPath.Location = new System.Drawing.Point(129, 17);
+            this.txtPhotosPath.Location = new System.Drawing.Point(141, 17);
             this.txtPhotosPath.Name = "txtPhotosPath";
-            this.txtPhotosPath.Size = new System.Drawing.Size(375, 20);
+            this.txtPhotosPath.Size = new System.Drawing.Size(363, 20);
             this.txtPhotosPath.TabIndex = 1;
             // 
             // cmdMakeArchive
             // 
-            this.cmdMakeArchive.Location = new System.Drawing.Point(510, 41);
+            this.cmdMakeArchive.Location = new System.Drawing.Point(510, 70);
             this.cmdMakeArchive.Name = "cmdMakeArchive";
             this.cmdMakeArchive.Size = new System.Drawing.Size(75, 23);
             this.cmdMakeArchive.TabIndex = 0;
@@ -114,20 +121,24 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtContacts);
+            this.groupBox2.Controls.Add(this.txtName);
             this.groupBox2.Controls.Add(this.cmdUpdateXML);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.cmdXmlBrowse);
             this.groupBox2.Controls.Add(this.txtXmlPath);
-            this.groupBox2.Location = new System.Drawing.Point(12, 95);
+            this.groupBox2.Location = new System.Drawing.Point(12, 123);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(597, 83);
+            this.groupBox2.Size = new System.Drawing.Size(597, 108);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Обновление XML";
             // 
             // cmdUpdateXML
             // 
-            this.cmdUpdateXML.Location = new System.Drawing.Point(510, 46);
+            this.cmdUpdateXML.Location = new System.Drawing.Point(510, 75);
             this.cmdUpdateXML.Name = "cmdUpdateXML";
             this.cmdUpdateXML.Size = new System.Drawing.Size(75, 23);
             this.cmdUpdateXML.TabIndex = 3;
@@ -156,16 +167,58 @@
             // 
             // txtXmlPath
             // 
-            this.txtXmlPath.Location = new System.Drawing.Point(129, 19);
+            this.txtXmlPath.Location = new System.Drawing.Point(141, 19);
             this.txtXmlPath.Name = "txtXmlPath";
-            this.txtXmlPath.Size = new System.Drawing.Size(375, 20);
+            this.txtXmlPath.Size = new System.Drawing.Size(363, 20);
             this.txtXmlPath.TabIndex = 0;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(141, 49);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(363, 20);
+            this.txtName.TabIndex = 4;
+            // 
+            // txtContacts
+            // 
+            this.txtContacts.Location = new System.Drawing.Point(141, 75);
+            this.txtContacts.Name = "txtContacts";
+            this.txtContacts.Size = new System.Drawing.Size(363, 20);
+            this.txtContacts.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Название организации:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 78);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Контакты:";
+            // 
+            // cmdOutBrowse
+            // 
+            this.cmdOutBrowse.Location = new System.Drawing.Point(510, 41);
+            this.cmdOutBrowse.Name = "cmdOutBrowse";
+            this.cmdOutBrowse.Size = new System.Drawing.Size(75, 23);
+            this.cmdOutBrowse.TabIndex = 7;
+            this.cmdOutBrowse.Text = "Обзор...";
+            this.cmdOutBrowse.UseVisualStyleBackColor = true;
+            this.cmdOutBrowse.Click += new System.EventHandler(this.cmdOutBrowse_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 186);
+            this.ClientSize = new System.Drawing.Size(619, 239);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -197,6 +250,12 @@
         private System.Windows.Forms.TextBox txtXmlPath;
         private System.Windows.Forms.FolderBrowserDialog xmlDialog;
         private System.Windows.Forms.Button cmdUpdateXML;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtContacts;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button cmdOutBrowse;
+        private System.Windows.Forms.FolderBrowserDialog outDialog;
     }
 }
 
